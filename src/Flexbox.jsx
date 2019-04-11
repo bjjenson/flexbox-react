@@ -18,6 +18,7 @@ const Flexbox = styled(({
   flex,
   flexBasis,
   flexDirection,
+  flexFull,
   flexGrow,
   flexShrink,
   flexWrap,
@@ -46,6 +47,7 @@ const Flexbox = styled(({
   ${props => (props.alignItems ? `align-items: ${props.alignItems};` : '')}
   ${props => (props.display ? `display: ${props.display};` : '')}
   ${props => (isTruthyOrZero(props.flex) ? `flex: ${props.flex};` : '')}
+  ${props => (isTruthyOrZero(props.flex) && props.flexDirection === 'column' ? 'min-height: 0;' : '')}
   ${props => (isTruthyOrZero(props.flexBasis) ? `flex-basis: ${props.flexBasis};` : '')}
   ${props => (props.flexDirection ? `flex-direction: ${props.flexDirection};` : '')}
   ${props => (isTruthyOrZero(props.flexGrow) ? `flex-grow: ${props.flexGrow};` : '')}
@@ -69,6 +71,7 @@ const Flexbox = styled(({
   ${props => (isTruthyOrZero(props.paddingRight) ? `padding-right: ${props.paddingRight};` : '')}
   ${props => (isTruthyOrZero(props.paddingTop) ? `padding-top: ${props.paddingTop};` : '')}
   ${props => (isTruthyOrZero(props.width) ? `width: ${props.width};` : '')}
+  ${props => (props.flexFull ? 'flex: 1; flex-direction: column; min-height: 0;' : '')}
 `;
 
 Flexbox.propTypes = {
@@ -98,6 +101,7 @@ Flexbox.propTypes = {
   flex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   flexBasis: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   flexDirection: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+  flexFull: PropTypes.bool,
   flexGrow: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   flexShrink: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   flexWrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
@@ -132,6 +136,7 @@ Flexbox.propTypes = {
 Flexbox.defaultProps = {
   display: 'flex',
   element: 'div',
+  flexFull: false,
 };
 
 export default Flexbox;

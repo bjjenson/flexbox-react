@@ -117,3 +117,12 @@ test(
     />,
   ),
 );
+
+test(
+  'Render <Flexbox /> with flexFull',
+  testComponent(
+    <Flexbox
+      flexFull
+    />,
+  ),
+);
